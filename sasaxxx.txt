@@ -1,0 +1,36 @@
+const deleteResources = async (ids: string[]) => {
+    setLoading(true);
+    try {
+        for (const id of ids) {
+            // First, fetch the resource to get the latest SHA
+            const resourceResponse = await fetch(`/api/resource/deleteResourceRoute?id=${id}`);
+            if (!resourceResponse.ok) {
+                throw new Error(`Failed to fetch resource with id ${id}`);
+            }
+            const resourceData = await resourceResponse.json();
+            const latestSHA = resourceData.sha; // Ensure this endpoint returns the latest SHA
+
+            // Attempt to delete the resource
+            const deleteResponse = await fetch(`/api/resource/deleteResourceRoute?id=${id}`, {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ sha: latestSHA }), // Pass the latest SHA
+            });
+
+            if (!deleteResponse.ok) {
+                const errorData = await deleteResponse.json();
+                throw new Error(`Failed to delete resource with id ${id}: ${errorData.message}`);
+            }
+        }
+
+        toast.success("Resource(s) deleted successfully!");
+        fetchData(); // Refetch resources after deletion
+    } catch (error) {
+        console.error("Error deleting resources:", error);
+        toast.error("Error deleting resources");
+    } finally {
+        setLoading(false);
+    }
+};
