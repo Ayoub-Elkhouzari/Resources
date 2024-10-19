@@ -1,0 +1,17 @@
+const deleteResource = async (id) => {
+    try {
+        const response = await fetch(`/api/resource/deleteResourceRoute?id=${id}`, {
+            method: "DELETE", // Ensure you're using DELETE
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(`Failed to delete resource: ${errorData.message}`);
+        }
+
+        // Handle success (e.g., refetch resources, show a success message)
+        console.log("Resource deleted successfully!");
+    } catch (error) {
+        console.error("Error deleting resource:", error);
+    }
+};
