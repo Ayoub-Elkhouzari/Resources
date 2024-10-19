@@ -1,0 +1,5 @@
+Extract this nested ternary operation into an independent statement.sonarlint(typescript:S3358)
+Type '{ onChange: (...event: any[]) => void; onBlur: Noop; value: string | File; disabled?: boolean; name: "path"; ref: RefCallBack; className: string; placeholder: string; }' is not assignable to type 'InputProps'.
+  Types of property 'value' are incompatible.
+    Type 'string | File' is not assignable to type 'string | number | readonly string[]'.
+      Type 'File' is not assignable to type 'string | number | readonly string[]'.
