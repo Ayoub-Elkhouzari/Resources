@@ -1,1 +1,0 @@
-Sample Quiz: 1) What is Python? 2) Define machine learning.
