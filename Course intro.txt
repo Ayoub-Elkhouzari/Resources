@@ -1,0 +1,4 @@
+AI turns data into decisions by learning patterns from examples instead of following only hand-written rules.
+It powers things like medical-image analysis, voice assistants, fraud detection, and smart recommendations.
+Modern AI is largely built on machine learning, especially deep neural networks trained on lots of data.
+Used well, it boosts accuracy and speed, but it must be designed carefully to reduce bias, errors, and privacy risks.
